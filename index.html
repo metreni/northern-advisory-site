@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northern Advisory | Accounting · Finance · Tax</title>
+<meta name="description" content="CPA-led bookkeeping, tax planning, and FP&A advisory for small business owners in Toronto, with a focus on real estate investment and adjacent sectors.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ===================== DESIGN TOKENS ===================== */
+  :root{
+    --navy:        #0D1F3C;
+    --navy-deep:   #081224;
+    --gold:        #C9A84C;
+    --gold-soft:   #DCC489;
+    --offwhite:    #F5F0E8;
+    --bluegrey:    #B8C4D4;
+    --ink:         #0D1F3C;
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'Inter', -apple-system, Segoe UI, sans-serif;
+
+    --container: 1100px;
+    --section-pad: clamp(64px, 9vw, 120px);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--offwhite);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color: inherit; text-decoration: none; }
+  .container{
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .eyebrow{
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .eyebrow .bearing{
+    width: 28px; height: 28px;
+    flex-shrink: 0;
+  }
+  h1,h2,h3{ font-family: var(--font-display); font-weight: 600; line-height: 1.15; }
+  h2{ font-size: clamp(28px, 3.4vw, 42px); margin-bottom: 22px; }
+  .lede{ font-size: clamp(16px,1.3vw,18px); max-width: 620px; opacity:.92; }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding: 14px 28px;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:.04em;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    cursor:pointer;
+    transition: all .2s ease;
+  }
+  .btn-gold{ background: var(--gold); color: var(--navy-deep); }
+  .btn-gold:hover{ background: var(--gold-soft); transform: translateY(-1px); }
+  .btn-outline{ border-color: currentColor; background: transparent; }
+  .btn-outline:hover{ background: rgba(245,240,232,.08); }
+  .hr-gold{
+    width: 64px; height: 2px; background: var(--gold); border:0; margin: 0 0 26px;
+  }
+
+  /* ===================== HEADER ===================== */
+  header{
+    position: fixed; top:0; left:0; right:0; z-index: 100;
+    padding: 18px 0;
+    background: transparent;
+    transition: background .3s ease, padding .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled{
+    background: rgba(245,240,232,.96);
+    padding: 12px 0;
+    box-shadow: 0 1px 0 rgba(13,31,60,.08);
+  }
+  header .container{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark-wrap{ position:relative; width: 26px; height:26px; flex-shrink:0; }
+  .brand-mark{ position:absolute; inset:0; width:100%; height:100%; transition: opacity .3s ease; }
+  .brand-mark.mark-color{ opacity:0; }
+  .brand-mark.mark-light{ opacity:1; }
+  header.scrolled .brand-mark.mark-light{ opacity:0; }
+  header.scrolled .brand-mark.mark-color{ opacity:1; }
+  .brand-word{
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    color: var(--offwhite);
+    transition: color .3s ease;
+  }
+  header.scrolled .brand-word{ color: var(--navy); }
+
+  nav.primary-nav{ display:flex; align-items:center; gap: 34px; }
+  nav.primary-nav a{
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--offwhite);
+    transition: color .3s ease, opacity .2s ease;
+    opacity:.85;
+  }
+  nav.primary-nav a span{ color: var(--gold); margin-right:6px; }
+  nav.primary-nav a:hover{ opacity:1; }
+  header.scrolled nav.primary-nav a{ color: var(--navy); }
+
+  .menu-toggle{ display:none; }
+
+  /* ===================== HERO ===================== */
+  .hero{
+    position: relative;
+    min-height: 100vh;
+    background: radial-gradient(120% 100% at 50% -10%, #142a4d 0%, var(--navy) 45%, var(--navy-deep) 100%);
+    color: var(--offwhite);
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    padding-top: 90px;
+  }
+  .hero .container{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items:center;
+    gap: 40px;
+  }
+  .hero-tagline{
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+  }
+  .hero h1{
+    font-size: clamp(36px, 5vw, 60px);
+    color: var(--offwhite);
+    margin-bottom: 24px;
+  }
+  .hero h1 em{ font-style: italic; color: var(--gold-soft); }
+  .hero .lede{ color: var(--bluegrey); margin-bottom: 36px; }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* compass rose */
+  .compass-wrap{ position:relative; display:flex; align-items:center; justify-content:center; }
+  .compass-rose{ width: min(380px, 80vw); }
+  .needle{ transform-origin: 200px 200px; animation: spin 140s linear infinite; }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+
+  .scroll-cue{
+    position:absolute; bottom: 32px; left:50%; transform: translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    color: var(--bluegrey); font-size: 11px; letter-spacing:.2em; text-transform:uppercase;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background: var(--bluegrey); opacity:.6; }
+
+  /* ===================== SECTIONS ===================== */
+  section{ padding: var(--section-pad) 0; }
+  .on-offwhite{ background: var(--offwhite); color: var(--navy); }
+  .on-navy{ background: var(--navy); color: var(--offwhite); }
+  .on-offwhite .eyebrow{ color: var(--navy); }
+  .on-navy .eyebrow{ color: var(--gold); }
+  .on-navy .eyebrow .bearing{ color: var(--gold); }
+  .on-navy h2{ color: var(--offwhite); }
+
+  /* ----- About (N) ----- */
+  #about .container{
+    display:grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items:start;
+  }
+  #about p + p{ margin-top: 16px; }
+  .credentials{
+    border: 1px solid var(--bluegrey);
+    padding: 30px;
+    background: rgba(184,196,212,.12);
+  }
+  .credentials h3{
+    font-size: 15px; text-transform:uppercase; letter-spacing:.1em; font-family: var(--font-body);
+    font-weight:700; margin-bottom:18px; color: var(--navy);
+  }
+  .credentials ul{ list-style:none; display:flex; flex-direction:column; gap:14px; }
+  .credentials li{ display:flex; gap:12px; font-size:14.5px; }
+  .credentials li::before{ content:'—'; color: var(--gold); font-weight:700; flex-shrink:0; }
+
+  /* ----- Services (E) ----- */
+  .service-grid{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 28px; margin-top: 48px;
+  }
+  .service-card{
+    border: 1px solid rgba(184,196,212,.35);
+    padding: 32px 28px;
+    background: rgba(245,240,232,.03);
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .service-card:hover{ border-color: var(--gold); transform: translateY(-3px); }
+  .service-card .icon{ width:34px; height:34px; margin-bottom:22px; color: var(--gold); }
+  .service-card h3{ font-family: var(--font-display); font-size:21px; font-weight:600; margin-bottom:12px; color: var(--offwhite); }
+  .service-card p{ font-size:14.5px; color: var(--bluegrey); }
+
+  /* ----- Engagement / pricing (S) ----- */
+  .tier-grid{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 24px; margin-top: 48px;
+  }
+  .tier-card{
+    border: 1px solid var(--bluegrey);
+    padding: 36px 30px;
+    display:flex; flex-direction:column;
+    background: #fff8;
+  }
+  .tier-card.featured{ border-color: var(--gold); position:relative; }
+  .tier-card.featured::before{
+    content:'Most chosen';
+    position:absolute; top:-12px; left:30px;
+    background: var(--gold); color: var(--navy-deep);
+    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    padding: 4px 10px;
+  }
+  .tier-name{ font-family: var(--font-display); font-size:24px; font-weight:600; margin-bottom:6px; }
+  .tier-for{ font-size:13px; color: var(--navy); opacity:.65; margin-bottom:20px; }
+  .tier-card ul{ list-style:none; display:flex; flex-direction:column; gap:11px; margin-bottom:26px; flex-grow:1; }
+  .tier-card li{ font-size:14px; display:flex; gap:10px; }
+  .tier-card li::before{ content:'✓'; color: var(--gold); font-weight:700; }
+  .tier-foot{ font-size:12px; opacity:.6; margin-top:36px; text-align:center; }
+
+  /* ----- Contact (W) ----- */
+  #contact .container{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items:start;
+  }
+  .contact-card{
+    border: 1px solid rgba(184,196,212,.4);
+    padding: 36px;
+  }
+  .contact-line{ display:flex; flex-direction:column; gap:4px; margin-bottom:24px; }
+  .contact-line .label{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color: var(--gold); }
+  .contact-line .value{ font-size:18px; font-family: var(--font-display); }
+
+  /* ===================== FOOTER ===================== */
+  footer{
+    background: var(--navy-deep);
+    color: var(--bluegrey);
+    padding: 28px 0;
+    font-size: 13px;
+  }
+  footer .container{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  footer .brand{ opacity:.85; }
+  footer .brand-word{ color: var(--bluegrey); font-size:14px; }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 880px){
+    .hero .container{ grid-template-columns: 1fr; text-align:left; }
+    .compass-wrap{ order:-1; margin-bottom: 20px; }
+    .compass-rose{ width: 220px; }
+    #about .container, #contact .container{ grid-template-columns: 1fr; }
+    nav.primary-nav{
+      position: fixed; inset:0; top:0;
+      background: var(--navy);
+      flex-direction:column; justify-content:center; align-items:center;
+      gap: 30px;
+      transform: translateX(100%);
+      transition: transform .3s ease;
+    }
+    nav.primary-nav.open{ transform: translateX(0); }
+    nav.primary-nav a{ color: var(--offwhite) !important; font-size:18px; }
+    .menu-toggle{
+      display:flex; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; z-index:200; padding:6px;
+    }
+    .menu-toggle span{ width:24px; height:2px; background: var(--offwhite); transition: all .2s ease; }
+    header.scrolled .menu-toggle span{ background: var(--navy); }
+    .menu-toggle.open span{ background: var(--offwhite) !important; }
+    .menu-toggle.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2){ opacity:0; }
+    .menu-toggle.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .needle{ animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header id="siteHeader">
+  <div class="container">
+    <a href="#top" class="brand">
+      <span class="brand-mark-wrap">
+        <!-- reversed off-white version: shown over the dark hero -->
+        <svg class="brand-mark mark-light" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="215,55 255,215 215,375 175,215" fill="#F5F0E8"/>
+          <polygon points="40,215 215,175 390,215 215,255" fill="#F5F0E8"/>
+        </svg>
+        <!-- true two-colour version: shown once header is on the off-white background -->
+        <svg class="brand-mark mark-color" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="215,55 255,215 215,375 175,215" fill="#C9A84C"/>
+          <polygon points="40,215 215,175 390,215 215,255" fill="#0D1F3C"/>
+        </svg>
+      </span>
+      <span class="brand-word">NORTHERN ADVISORY</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="primary-nav" id="primaryNav">
+      <a href="#about"><span>N</span>About</a>
+      <a href="#services"><span>E</span>Services</a>
+      <a href="#engagement"><span>S</span>Engagement</a>
+      <a href="#contact"><span>W</span>Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="container">
+    <div>
+      <div class="hero-tagline">Accounting · Finance · Tax</div>
+      <h1>Clear direction<br>for your <em>finances.</em></h1>
+      <p class="lede">CPA-led accounting, tax planning, and FP&amp;A advisory for individuals and businesses who want more than tidy books — built on real experience in private equity and real estate development.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-gold">Book a discovery call</a>
+        <a href="#services" class="btn btn-outline">See services</a>
+      </div>
+    </div>
+
+    <div class="compass-wrap">
+      <!-- EDIT: this compass rose is the page's signature graphic -->
+      <svg class="compass-rose" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="170" fill="none" stroke="#B8C4D4" stroke-width="1" opacity=".35"/>
+        <circle cx="200" cy="200" r="130" fill="none" stroke="#B8C4D4" stroke-width="1" opacity=".25"/>
+        <!-- ticks -->
+        <g stroke="#B8C4D4" stroke-width="1" opacity=".4">
+          <line x1="200" y1="30" x2="200" y2="50"/>
+          <line x1="200" y1="350" x2="200" y2="370"/>
+          <line x1="30" y1="200" x2="50" y2="200"/>
+          <line x1="350" y1="200" x2="370" y2="200"/>
+        </g>
+        <text x="200" y="24" text-anchor="middle" fill="#C9A84C" font-family="Inter" font-size="15" font-weight="700">N</text>
+        <text x="200" y="386" text-anchor="middle" fill="#B8C4D4" font-family="Inter" font-size="13">S</text>
+        <text x="18" y="206" text-anchor="middle" fill="#B8C4D4" font-family="Inter" font-size="13">W</text>
+        <text x="382" y="206" text-anchor="middle" fill="#B8C4D4" font-family="Inter" font-size="13">E</text>
+        <g class="needle">
+          <polygon points="200,70 214,200 200,330 186,200" fill="#C9A84C" opacity=".18"/>
+          <polygon points="200,70 210,200 200,200" fill="#C9A84C"/>
+          <polygon points="200,200 190,200 200,330" fill="#DCC489" opacity=".7"/>
+        </g>
+        <circle cx="200" cy="200" r="6" fill="#F5F0E8"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="scroll-cue"><span>Explore</span><span class="line"></span></div>
+</section>
+
+<!-- ===================== N — ABOUT ===================== -->
+<section id="about" class="on-offwhite">
+  <div class="container">
+    <div>
+      <div class="eyebrow"><svg class="bearing" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" stroke-width="1"/><text x="14" y="15" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" font-weight="700" fill="currentColor">N</text></svg>About</div>
+      <h2>Advisory depth, not just<br>compliance work.</h2>
+      <hr class="hr-gold">
+      <!-- EDIT: about copy -->
+      <p>Northern Advisory is led by Matthew Etreni, CPA — seven years spent in private equity and real estate development finance before stepping out to work directly with business owners.</p>
+      <p>Most accounting providers can keep your books straight and your filings on time. Fewer can also tell you whether a deal pencils out, model a refinance, or build the forecast your lender actually wants to see. That gap — between bookkeeping and real financial judgment — is what Northern Advisory is built to close.</p>
+      <p>The practice works with a small, deliberately limited number of business owners at a time, with a particular focus on real estate investment and adjacent sectors.</p>
+    </div>
+
+    <div class="credentials">
+      <h3>At a glance</h3>
+      <ul>
+        <li>CPA, registered with CPA Ontario</li>
+        <li>7+ years in private equity &amp; real estate development finance</li>
+        <li>Based in Toronto, working with owner-operated businesses</li>
+        <li>Working with small and growing businesses, plus the individuals behind them</li>
+        <li>CSRS 4200-compliant compiled financial statements</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== E — SERVICES ===================== -->
+<section id="services" class="on-navy">
+  <div class="container">
+    <div class="eyebrow"><svg class="bearing" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" stroke-width="1"/><text x="14" y="15" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" font-weight="700" fill="currentColor">E</text></svg>Services</div>
+    <h2>Three ways we keep your<br>numbers working for you.</h2>
+    <p class="lede" style="color:var(--bluegrey)">Pick one service or combine all three — engagements are scoped to what your business actually needs.</p>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="17" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="13" x2="13" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+        <h3>Bookkeeping</h3>
+        <p>Accurate, reconciled, review-ready books every month — so you always know exactly where the business stands.</p>
+      </div>
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg>
+        <h3>Tax Planning &amp; Filing</h3>
+        <p>Proactive planning year-round, not a scramble every April. Corporate and personal returns prepared by a CPA.</p>
+      </div>
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="20" x2="4" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="20" y1="20" x2="20" y2="14"/></svg>
+        <h3>FP&amp;A Advisory</h3>
+        <p>Budgets, forecasts, and deal-level analysis drawing on real private equity and real estate development experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== S — ENGAGEMENT ===================== -->
+<section id="engagement" class="on-offwhite">
+  <div class="container">
+    <div class="eyebrow"><svg class="bearing" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" stroke-width="1"/><text x="14" y="15" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" font-weight="700" fill="currentColor">S</text></svg>Engagement</div>
+    <h2>Straightforward, fixed-fee engagements.</h2>
+    <p class="lede">No surprise invoices. Every engagement starts with a discovery call to scope the right tier for your business, followed by a clear engagement letter.</p>
+
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div class="tier-name">Foundation</div>
+        <div class="tier-for">For early-stage or lean operations</div>
+        <ul>
+          <li>Monthly bookkeeping &amp; reconciliation</li>
+          <li>Quarterly check-in</li>
+          <li>Annual corporate &amp; personal tax filing</li>
+        </ul>
+      </div>
+      <div class="tier-card featured">
+        <div class="tier-name">Growth</div>
+        <div class="tier-for">For owners ready to plan ahead, not just file</div>
+        <ul>
+          <li>Everything in Foundation</li>
+          <li>Proactive tax planning</li>
+          <li>Quarterly financial reporting &amp; strategy sessions</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Strategic</div>
+        <div class="tier-for">For complex or multi-entity portfolios</div>
+        <ul>
+          <li>Everything in Growth</li>
+          <li>Full FP&amp;A advisory &amp; forecasting</li>
+          <li>Deal and acquisition support</li>
+        </ul>
+      </div>
+    </div>
+    <p class="tier-foot">Founding client pricing available for early engagements. Exact scope and fees are confirmed after your discovery call.</p>
+  </div>
+</section>
+
+<!-- ===================== W — CONTACT ===================== -->
+<section id="contact" class="on-navy">
+  <div class="container">
+    <div>
+      <div class="eyebrow"><svg class="bearing" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" stroke-width="1"/><text x="14" y="15" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" font-weight="700" fill="currentColor">W</text></svg>Contact</div>
+      <h2>Let's find your bearings.</h2>
+      <p class="lede" style="color:var(--bluegrey); margin-bottom:28px;">Northern Advisory works with small and growing businesses — and the individuals behind them — with a focus on real estate investment and adjacent sectors. If that sounds like you, get in touch.</p>
+      <a href="mailto:metreni@northernadvisory.ca" class="btn btn-gold">Email Matthew →</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-line">
+        <span class="label">Email</span>
+        <a href="mailto:metreni@northernadvisory.ca" class="value">metreni@northernadvisory.ca</a>
+      </div>
+      <div class="contact-line">
+        <span class="label">Based in</span>
+        <span class="value">Toronto, Ontario</span>
+      </div>
+      <div class="contact-line">
+        <span class="label">Regulated by</span>
+        <span class="value" style="font-size:15px;">CPA Ontario</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <a href="#top" class="brand" style="display:flex;align-items:center;gap:8px;">
+      <svg width="18" height="18" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="215,55 255,215 215,375 175,215" fill="#B8C4D4"/>
+        <polygon points="40,215 215,175 390,215 215,255" fill="#B8C4D4"/>
+      </svg>
+      <span class="brand-word">Northern Advisory</span>
+    </a>
+    <span>© <span id="year"></span> Northern Advisory. CPA Ontario member.</span>
+  </div>
+</footer>
+
+<script>
+  // header background on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // mobile menu toggle
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('primaryNav');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    nav.classList.remove('open');
+  }));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
