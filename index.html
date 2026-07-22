@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Northern Advisory | Accounting · Finance · Tax</title>
-<meta name="description" content="CPA-led bookkeeping, tax planning, and FP&A advisory for small business owners in Toronto, with a focus on real estate investment and adjacent sectors.">
+<meta name="description" content="CPA-led reporting, compliance, and advisory services for small business owners in Toronto, with a focus on real estate investment and adjacent sectors.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -218,32 +218,62 @@
   .service-card .icon{ width:34px; height:34px; margin-bottom:22px; color: var(--gold); }
   .service-card h3{ font-family: var(--font-display); font-size:21px; font-weight:600; margin-bottom:12px; color: var(--offwhite); }
   .service-card p{ font-size:14.5px; color: var(--bluegrey); }
+  .service-card ul{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+  .service-card li{ font-size:13.5px; color: var(--bluegrey); display:flex; gap:8px; }
+  .service-card li::before{ content:'—'; color: var(--gold); flex-shrink:0; }
 
   /* ----- Engagement / pricing (S) ----- */
-  .tier-grid{
-    display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  .engage-managed{
+    display:grid; grid-template-columns: 1fr 1fr;
     gap: 24px; margin-top: 48px;
   }
-  .tier-card{
+  .engage-card{
     border: 1px solid var(--bluegrey);
     padding: 36px 30px;
     display:flex; flex-direction:column;
     background: #fff8;
   }
-  .tier-card.featured{ border-color: var(--gold); position:relative; }
-  .tier-card.featured::before{
-    content:'Most chosen';
-    position:absolute; top:-12px; left:30px;
-    background: var(--gold); color: var(--navy-deep);
-    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-    padding: 4px 10px;
+  .engage-badge{
+    display:inline-block;
+    font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
   }
-  .tier-name{ font-family: var(--font-display); font-size:24px; font-weight:600; margin-bottom:6px; }
-  .tier-for{ font-size:13px; color: var(--navy); opacity:.65; margin-bottom:20px; }
-  .tier-card ul{ list-style:none; display:flex; flex-direction:column; gap:11px; margin-bottom:26px; flex-grow:1; }
-  .tier-card li{ font-size:14px; display:flex; gap:10px; }
-  .tier-card li::before{ content:'✓'; color: var(--gold); font-weight:700; }
-  .tier-foot{ font-size:12px; opacity:.6; margin-top:36px; text-align:center; }
+  .engage-card h3{ font-family: var(--font-display); font-size:24px; font-weight:600; margin-bottom:6px; }
+  .engage-card ul{ list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:24px; flex-grow:1; }
+  .engage-card li{ font-size:14px; display:flex; gap:10px; }
+  .engage-card li::before{ content:'—'; color: var(--gold); flex-shrink:0; }
+  .engage-price{
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 600;
+    color: var(--navy);
+    border-top: 1px solid var(--bluegrey);
+    padding-top: 20px;
+  }
+  .engage-price small{ font-size:13px; font-weight:400; opacity:.65; font-family: var(--font-body); }
+
+  /* advisory card spans full width for emphasis */
+  .engage-advisory{
+    border: 1px solid var(--bluegrey);
+    padding: 36px 30px;
+    margin-top: 24px;
+    background: #fff8;
+    display:flex; flex-direction:column;
+  }
+  .engage-advisory h3{ font-family: var(--font-display); font-size:24px; font-weight:600; margin-bottom:6px; }
+  .engage-advisory .engage-badge{ margin-bottom:18px; }
+  .engage-advisory ul{
+    list-style:none; display:flex; flex-direction:column; gap:10px;
+    margin-bottom:24px; flex-grow:1;
+  }
+  .engage-advisory li{ font-size:14px; display:flex; gap:10px; }
+  .engage-advisory li::before{ content:'—'; color: var(--gold); flex-shrink:0; }
+
+  .engage-foot{ font-size:12px; opacity:.6; margin-top:36px; text-align:center; }
+
+  @media (max-width: 700px){
+    .engage-managed{ grid-template-columns: 1fr; }
+  }
 
   /* ----- Contact (W) ----- */
   #contact .container{
@@ -340,7 +370,7 @@
     <div>
       <div class="hero-tagline">Accounting · Finance · Tax</div>
       <h1>Clear direction<br>for your <em>finances.</em></h1>
-      <p class="lede">CPA-led accounting, tax planning, and FP&amp;A advisory for individuals and businesses who want more than tidy books. Advice built on real experience in private equity and real estate development.</p>
+      <p class="lede">CPA-led reporting, compliance, and advisory for individuals and businesses who want more than tidy books. Advice built on real experience in private equity and real estate development.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-gold">Book a discovery call</a>
         <a href="#services" class="btn btn-outline">See services</a>
@@ -411,19 +441,33 @@
 
     <div class="service-grid">
       <div class="service-card">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="17" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="13" x2="13" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
-        <h3>Bookkeeping</h3>
-        <p>Accurate, reconciled, review-ready books every month. So you always know exactly where the business stands.</p>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg>
+        <h3>Reporting</h3>
+        <ul>
+          <li>Bookkeeping</li>
+          <li>Financial statement preparation</li>
+          <li>Management reporting</li>
+        </ul>
       </div>
       <div class="service-card">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg>
-        <h3>Tax Planning &amp; Filing</h3>
-        <p>Proactive planning year-round, not a scramble every April. Corporate and personal returns prepared by a CPA.</p>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l7 4v5c0 5.25-3.13 10.15-7 11-3.87-.85-7-5.75-7-11V6l7-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+        <h3>Compliance</h3>
+        <ul>
+          <li>Corporate and personal tax filings</li>
+          <li>HST filings</li>
+          <li>Government remittances</li>
+        </ul>
       </div>
       <div class="service-card">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="20" x2="4" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="20" y1="20" x2="20" y2="14"/></svg>
-        <h3>FP&amp;A Advisory</h3>
-        <p>Budgets, forecasts, and deal-level analysis drawing on real private equity and real estate development experience.</p>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="12,2 14,12 12,22 10,12"/></svg>
+        <h3>Advisory</h3>
+        <ul>
+          <li>Proactive tax planning</li>
+          <li>Structure analysis</li>
+          <li>Budgeting &amp; forecasting</li>
+          <li>Investment &amp; deal analysis</li>
+          <li>Financial model development</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -434,38 +478,47 @@
   <div class="container">
     <div class="eyebrow"><svg class="bearing" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" stroke-width="1"/><text x="14" y="15" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" font-weight="700" fill="currentColor">S</text></svg>Engagement</div>
     <h2>Straightforward, fixed-fee engagements.</h2>
-    <p class="lede">No surprise invoices. Every engagement starts with a discovery call to scope the right tier for your business, followed by a clear engagement letter.</p>
+    <p class="lede">No surprise invoices. Every engagement starts with a discovery call to scope what you need, followed by a clear engagement letter.</p>
 
-    <div class="tier-grid">
-      <div class="tier-card">
-        <div class="tier-name">Foundation</div>
-        <div class="tier-for">For early-stage or lean operations</div>
+    <!-- Managed row: two side-by-side -->
+    <div class="engage-managed">
+      <div class="engage-card">
+        <span class="engage-badge">Managed — fixed monthly</span>
+        <h3>Reporting</h3>
         <ul>
-          <li>Monthly bookkeeping &amp; reconciliation</li>
-          <li>Quarterly check-in</li>
-          <li>Annual corporate &amp; personal tax filing</li>
+          <li>Bookkeeping</li>
+          <li>Financial statement preparation</li>
+          <li>Management reporting</li>
         </ul>
+        <div class="engage-price">From $400<span style="font-size:15px;">/mo</span> <small>+ HST</small></div>
       </div>
-      <div class="tier-card featured">
-        <div class="tier-name">Growth</div>
-        <div class="tier-for">For owners ready to plan ahead, not just file</div>
+      <div class="engage-card">
+        <span class="engage-badge">Managed — per filing</span>
+        <h3>Compliance</h3>
         <ul>
-          <li>Everything in Foundation</li>
-          <li>Proactive tax planning</li>
-          <li>Quarterly financial reporting &amp; strategy sessions</li>
+          <li>Corporate &amp; personal tax filings</li>
+          <li>HST filings</li>
+          <li>Government remittances</li>
         </ul>
-      </div>
-      <div class="tier-card">
-        <div class="tier-name">Strategic</div>
-        <div class="tier-for">For complex or multi-entity portfolios</div>
-        <ul>
-          <li>Everything in Growth</li>
-          <li>Full FP&amp;A advisory &amp; forecasting</li>
-          <li>Deal and acquisition support</li>
-        </ul>
+        <div class="engage-price">From $300 <small>per filing + HST</small></div>
       </div>
     </div>
-    <p class="tier-foot">Founding client pricing available for early engagements. Exact scope and fees are confirmed after your discovery call.</p>
+
+    <!-- Advisory: full-width, gold border -->
+    <div class="engage-advisory">
+      <span class="engage-badge">Project / Retainer</span>
+      <h3>Advisory</h3>
+      <ul>
+        <li>Proactive tax planning</li>
+        <li>Structure analysis</li>
+        <li>Budgeting &amp; forecasting</li>
+        <li>Investment &amp; deal analysis</li>
+        <li>Financial model development</li>
+      </ul>
+      <div class="engage-price"><small>Flat-fee, scoped per engagement + HST</small></div>
+    </div>
+
+    <p class="engage-foot">Founding client pricing available for early engagements. Exact scope and fees are confirmed after your discovery call.</p>
   </div>
 </section>
 
