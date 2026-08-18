@@ -191,6 +191,30 @@
   .credentials ul{ list-style:none; display:flex; flex-direction:column; gap:14px; }
   .credentials li{ display:flex; gap:12px; font-size:14.5px; }
   .credentials li::before{ content:'—'; color: var(--gold); font-weight:700; flex-shrink:0; }
+  /* Founder portrait (N section): gold halo hugs only the photo */
+  .founder-photo{
+    margin-top: 40px;
+    max-width: 420px;
+  }
+  .founder-frame{ position:relative; }
+  .founder-frame::before{
+    content:""; position:absolute; top:-14px; left:-14px; right:-14px; bottom:-14px;
+    border:1px solid var(--gold); opacity:.5;
+  }
+  .founder-photo img{
+    position:relative; display:block; width:100%;
+    border:1px solid var(--bluegrey);
+  }
+  .founder-photo figcaption{
+    position:relative; margin-top:34px;
+    font-size:12.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--navy); opacity:.75;
+  }
+  .founder-photo figcaption strong{
+    display:block; font-family:var(--font-display); font-style:italic;
+    text-transform:none; letter-spacing:0; font-size:16px; opacity:1; color:var(--navy);
+    margin-bottom:2px;
+  }
 
   /* ----- Services (E) ----- */
   .service-grid{
@@ -322,10 +346,29 @@
 
 /* ===================== DETAIL PAGES (reporting / compliance / advisory) ===================== */
 .page-hero{
+  position:relative;
+  overflow:hidden;
   background: radial-gradient(120% 100% at 50% -10%, #142a4d 0%, var(--navy) 45%, var(--navy-deep) 100%);
   color: var(--offwhite);
   padding: calc(var(--section-pad) + 60px) 0 80px;
 }
+/* On-brand photo grade: desaturate the photo, then a left-weighted navy
+   scrim keeps hero text legible while the image shows through on the right. */
+.page-hero .hero-photo,
+.hero .hero-photo{
+  position:absolute; inset:0; z-index:0;
+  width:100%; height:100%; object-fit:cover;
+  opacity:.35;
+  filter:saturate(.5) contrast(1.05) brightness(.9);
+}
+.page-hero::after,
+.hero::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(90deg, rgba(8,18,36,.88) 0%, rgba(8,18,36,.5) 48%, rgba(8,18,36,.18) 100%);
+}
+.page-hero .container{ position:relative; z-index:2; }
+.hero .container{ position:relative; z-index:2; }
+.hero .scroll-cue{ z-index:2; }
 .page-hero .eyebrow{ color: var(--gold); }
 .page-hero .eyebrow .bearing{ color: var(--gold); }
 .page-hero h1{ font-size: clamp(32px, 4.4vw, 52px); color: var(--offwhite); margin-bottom: 20px; }

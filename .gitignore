@@ -1,5 +1,5 @@
 # Local backups (never deploy)
-index.html.bak-*
+*.bak-*
 
 # Working notes (never deploy)
 *review notes*.txt
