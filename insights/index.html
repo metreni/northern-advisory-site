@@ -1,0 +1,34 @@
+---
+layout: base
+title: Insights
+nav: insights
+description: Commentary on accounting, tax, and finance for business owners, real estate investors, and developers, from Northern Advisory.
+---
+<!-- ===================== PAGE HERO ===================== -->
+<section class="page-hero">
+  <img class="hero-photo" src="/assets/toronto-skyline.jpg" alt="" aria-hidden="true">
+  <div class="container">
+    <div class="eyebrow">Insights</div>
+    <h1>Perspectives on tax, reporting,<br>and real estate finance.</h1>
+    <p class="lede">Practical commentary on accounting, tax, and finance for business owners, real estate investors, and developers.</p>
+  </div>
+</section>
+
+<!-- ===================== ARTICLE LIST ===================== -->
+<section class="on-offwhite">
+  <div class="container">
+    {%- if site.posts.size > 0 %}
+    <div class="insight-grid">
+      {%- for post in site.posts %}
+      {% include insight-card.html post=post %}
+      {%- endfor %}
+    </div>
+    {%- else %}
+    <div class="insight-empty">
+      <div class="insight-meta">Coming soon</div>
+      <h3>The first articles are on their way.</h3>
+      <p>New pieces on tax, reporting, and real estate finance will be published here.</p>
+    </div>
+    {%- endif %}
+  </div>
+</section>

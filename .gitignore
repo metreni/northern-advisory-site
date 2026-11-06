@@ -3,3 +3,7 @@
 
 # Working notes (never deploy)
 *review notes*.txt
+
+# Jekyll build output (local preview only)
+_site/
+.jekyll-cache/

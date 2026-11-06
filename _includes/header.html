@@ -1,0 +1,30 @@
+<!-- ===================== HEADER (shared by Jekyll pages) ===================== -->
+<header id="siteHeader">
+  <div class="container">
+    <a href="/" class="brand">
+      <span class="brand-mark-wrap">
+        <svg class="brand-mark mark-light" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="215,55 255,215 215,375 175,215" fill="#F5F0E8"/>
+          <polygon points="40,215 215,175 390,215 215,255" fill="#F5F0E8"/>
+        </svg>
+        <svg class="brand-mark mark-color" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="215,55 255,215 215,375 175,215" fill="#C9A84C"/>
+          <polygon points="40,215 215,175 390,215 215,255" fill="#0D1F3C"/>
+        </svg>
+      </span>
+      <span class="brand-word">Northern Advisory</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="primary-nav" id="primaryNav">
+      <a href="/about.html"{% if page.nav == "about" %} class="active"{% endif %}><span>N</span>About</a>
+      <a href="/index.html#services"><span>E</span>Services</a>
+      <a href="/index.html#engagement"><span>S</span>Engagement</a>
+      <a href="/index.html#contact"><span>W</span>Contact</a>
+      <a href="/insights/" class="nav-plain{% if page.nav == "insights" %} active{% endif %}">Insights</a>
+    </nav>
+  </div>
+</header>

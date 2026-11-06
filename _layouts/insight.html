@@ -1,0 +1,62 @@
+---
+layout: base
+nav: insights
+---
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 220 | plus: 1 -%}
+<!-- ===================== ARTICLE HERO ===================== -->
+<section class="page-hero">
+  {%- if page.image %}
+  <img class="hero-photo" src="{{ page.image | relative_url }}" alt="" aria-hidden="true">
+  {%- endif %}
+  <div class="container">
+    <div class="insight-meta">
+      <a href="/insights/">Insights</a>
+      {%- if page.category %}<span class="sep">·</span><span>{{ page.category }}</span>{% endif %}
+      <span class="sep">·</span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      <span class="sep">·</span><span>{{ minutes }} min read</span>
+    </div>
+    <h1>{{ page.title }}</h1>
+    {%- if page.description %}
+    <p class="lede">{{ page.description }}</p>
+    {%- endif %}
+  </div>
+</section>
+
+<!-- ===================== ARTICLE BODY ===================== -->
+<section class="on-offwhite">
+  <div class="container article-wrap">
+    <article>
+      <div class="prose">
+        {{ content }}
+      </div>
+      <p class="disclaimer">This article is general information only, current as of its publication date, and is not tax, accounting, legal, or investment advice. Tax rules and their application depend on your specific facts. Speak with a qualified professional before acting on anything discussed here.</p>
+    </article>
+
+    <aside class="article-aside">
+      <div class="aside-card">
+        <div class="label">Written by</div>
+        <img class="avatar" src="/assets/matthew-etreni.jpg" alt="" loading="lazy">
+        <div class="who">{{ page.author }}</div>
+        <div class="role">{{ page.author_role }}</div>
+        <p>Questions about how this applies to you? Book a discovery call to talk it through.</p>
+        <a href="/index.html#contact" class="btn btn-gold">Get in touch</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+{%- assign others = site.posts | where_exp: "p", "p.url != page.url" -%}
+{%- if others.size > 0 %}
+<!-- ===================== MORE INSIGHTS ===================== -->
+<section class="on-offwhite more-insights" style="padding-top:0;">
+  <div class="container">
+    <h2>More insights</h2>
+    <div class="insight-grid">
+      {%- for post in others limit: 3 %}
+      {% include insight-card.html post=post %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}

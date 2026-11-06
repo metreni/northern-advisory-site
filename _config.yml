@@ -1,0 +1,39 @@
+# Jekyll configuration (GitHub Pages builds the site with Jekyll automatically).
+# Plain .html pages without front matter (index, reporting, compliance, advisory)
+# are copied through unchanged. Only Insights and the About page use layouts.
+
+title: Northern Advisory
+description: CPA-led reporting, compliance, and advisory services in Toronto.
+url: "https://northernadvisory.ca"
+baseurl: ""
+lang: en_CA
+timezone: America/Toronto
+
+# Insight articles live in _posts/ as Markdown: YYYY-MM-DD-short-title.md
+permalink: /insights/:title/
+
+defaults:
+  - scope: { path: "", type: posts }
+    values:
+      layout: insight
+      author: Matthew Etreni, CPA
+      author_role: Founder, Northern Advisory
+
+plugins:
+  - jekyll-feed      # publishes /feed.xml (RSS) for new Insights
+
+feed:
+  path: insights/feed.xml
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - INSIGHTS-HOWTO.md
+  - "*.bak-*"
+  - "*review notes*.txt"
+  - .worktrees
+  - Gemfile
+  - Gemfile.lock
+  - vendor
