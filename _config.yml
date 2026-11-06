@@ -10,7 +10,7 @@ lang: en_CA
 
 # Contact form: Web3Forms access key (create at web3forms.com using information@northernadvisory.ca).
 # The key only routes messages to that inbox; the address itself never appears on the site.
-web3forms_key: ""
+web3forms_key: "6e2cfd53-ccf8-4e09-93a9-ac5b87cfbcef"
 timezone: America/Toronto
 
 # Insight articles live in _posts/ as Markdown: YYYY-MM-DD-short-title.md
