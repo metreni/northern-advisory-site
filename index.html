@@ -1,3 +1,6 @@
+---
+nav: home
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,38 +70,7 @@
 </head>
 <body>
 
-<!-- ===================== HEADER ===================== -->
-<header id="siteHeader">
-  <div class="container">
-    <a href="#top" class="brand">
-      <span class="brand-mark-wrap">
-        <!-- reversed off-white version: shown over the dark hero -->
-        <svg class="brand-mark mark-light" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="215,55 255,215 215,375 175,215" fill="#F5F0E8"/>
-          <polygon points="40,215 215,175 390,215 215,255" fill="#F5F0E8"/>
-        </svg>
-        <!-- true two-colour version: shown once header is on the off-white background -->
-        <svg class="brand-mark mark-color" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="215,55 255,215 215,375 175,215" fill="#C9A84C"/>
-          <polygon points="40,215 215,175 390,215 215,255" fill="#0D1F3C"/>
-        </svg>
-      </span>
-      <span class="brand-word">Northern Advisory</span>
-    </a>
-
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="primary-nav" id="primaryNav">
-      <a href="/about.html"><span>N</span>About</a>
-      <a href="#services"><span>E</span>Services</a>
-      <a href="#engagement"><span>S</span>Engagement</a>
-      <a href="#contact"><span>W</span>Contact</a>
-      <a href="/insights/" class="nav-plain">Insights</a>
-    </nav>
-  </div>
-</header>
+{% include header.html %}
 
 <!-- ===================== HERO ===================== -->
 <section class="hero" id="top">
@@ -109,7 +81,7 @@
       <h1>Clear direction<br>for your finances.</h1>
       <p class="lede">CPA-led reporting, compliance, and advisory for individuals and businesses who want more than tidy books. Advice built on real experience in private equity and real estate development.</p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-gold">Book a discovery call</a>
+        <a href="{{ site.email_href }}" class="btn btn-gold">Book a discovery call</a>
         <a href="#services" class="btn btn-outline">See services</a>
       </div>
     </div>
@@ -214,126 +186,70 @@
     <h2>Straightforward, fixed-fee engagements.</h2>
     <p class="lede">No surprise invoices. Every engagement starts with a discovery call to scope what you need, followed by a clear engagement letter.</p>
 
-    <!-- Managed row: two side-by-side -->
     <div class="engage-managed">
       <div class="engage-card">
         <span class="engage-badge">Managed · fixed monthly</span>
         <h3>Reporting</h3>
-        <ul>
-          <li>Bookkeeping from $450/mo</li>
-          <li>Financial statements from $250 per statement</li>
-          <li>CSRS 4200 compilation from $1,750 annually</li>
-          <li>Management reporting from $350 per report</li>
+        <ul class="fee-list">
+          <li><span class="item">Bookkeeping</span><span class="fee"><small>from</small> $450<small>/month</small></span></li>
+          <li><span class="item">Financial statements</span><span class="fee"><small>from</small> $250<small>/statement</small></span></li>
+          <li><span class="item">CSRS 4200 compilation</span><span class="fee"><small>from</small> $1,750<small>/year</small></span></li>
+          <li><span class="item">Management reporting</span><span class="fee"><small>from</small> $350<small>/report</small></span></li>
         </ul>
-        <div class="engage-price">From $450<span style="font-size:15px;">/mo</span> <small>+ HST</small></div>
+        <div class="engage-price">From $450 <small>per month, plus HST</small></div>
         <a class="engage-link" href="reporting.html">See full pricing →</a>
       </div>
       <div class="engage-card">
         <span class="engage-badge">Managed · per filing</span>
         <h3>Compliance</h3>
-        <ul>
-          <li>Corporate tax (T2) from $1,500</li>
-          <li>Partnership returns (T5013) from $1,250</li>
-          <li>Trust returns (T3) from $750</li>
-          <li>Personal tax (T1) from $400</li>
-          <li>HST &amp; payroll remittances from $100 per filing</li>
-          <li>CRA representation from $1,500 per matter</li>
+        <ul class="fee-list">
+          <li><span class="item">Corporate tax (T2)</span><span class="fee"><small>from</small> $1,500<small>/return</small></span></li>
+          <li><span class="item">Partnership returns (T5013)</span><span class="fee"><small>from</small> $1,250<small>/return</small></span></li>
+          <li><span class="item">Trust returns (T3)</span><span class="fee"><small>from</small> $750<small>/return</small></span></li>
+          <li><span class="item">Personal tax (T1)</span><span class="fee"><small>from</small> $400<small>/return</small></span></li>
+          <li><span class="item">HST &amp; payroll remittances</span><span class="fee"><small>from</small> $100<small>/filing</small></span></li>
+          <li><span class="item">CRA representation</span><span class="fee"><small>from</small> $1,500<small>/matter</small></span></li>
         </ul>
-        <div class="engage-price">From $100 <small>per filing + HST</small></div>
+        <div class="engage-price">From $100 <small>per filing, plus HST</small></div>
         <a class="engage-link" href="compliance.html">See full pricing →</a>
       </div>
     </div>
 
-    <!-- Advisory: full-width, gold border -->
-    <div class="engage-advisory">
-      <span class="engage-badge">Project / Retainer</span>
-      <h3>Advisory</h3>
-      <ul>
-        <li>Tax planning retainer from $450/mo</li>
-        <li>Structure analysis from $2,500</li>
-        <li>Budgeting &amp; forecasting from $1,500</li>
-        <li>Investment &amp; deal analysis from $2,500 per deal</li>
-        <li>Financial model development from $1,500 per model</li>
+    <!-- Advisory: full-width, two columns -->
+    <div class="engage-card engage-advisory">
+      <div class="engage-advisory-intro">
+        <span class="engage-badge">Project · Retainer</span>
+        <h3>Advisory</h3>
+        <p>Flat-fee projects scoped up front, or ongoing access to a CPA through a monthly retainer.</p>
+        <div class="engage-price">From $450 <small>per month, plus HST</small></div>
+        <a class="engage-link" href="advisory.html">See full pricing →</a>
+      </div>
+      <ul class="fee-list">
+          <li><span class="item">Tax planning retainer</span><span class="fee"><small>from</small> $450<small>/month</small></span></li>
+          <li><span class="item">Structure analysis</span><span class="fee"><small>from</small> $2,500<small>/project</small></span></li>
+          <li><span class="item">Budgeting &amp; forecasting</span><span class="fee"><small>from</small> $1,500<small>/project</small></span></li>
+          <li><span class="item">Investment &amp; deal analysis</span><span class="fee"><small>from</small> $2,500<small>/deal</small></span></li>
+          <li><span class="item">Financial model development</span><span class="fee"><small>from</small> $1,500<small>/model</small></span></li>
       </ul>
-      <div class="engage-price">Retainers from $450<span style="font-size:15px;">/mo</span> <small>· Projects flat-fee + HST</small></div>
-      <a class="engage-link" href="advisory.html">See full pricing →</a>
     </div>
 
-    <p class="engage-foot">Founding client discounts available for early engagements. Exact scope and fees are confirmed after your discovery call.</p>
+    <div class="engage-note"><strong>Founding clients.</strong> Introductory pricing is available for early engagements. Exact scope and fees are confirmed after your discovery call.</div>
   </div>
 </section>
 
 <!-- ===================== W — CONTACT ===================== -->
 <section id="contact" class="on-navy">
   <div class="container">
-    <div>
-      <div class="eyebrow"><svg class="bearing" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" stroke-width="1"/><text x="14" y="15" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" font-weight="700" fill="currentColor">W</text></svg>Contact</div>
-      <h2>Let's find your bearings.</h2>
-      <p class="lede" style="color:var(--bluegrey); margin-bottom:28px;">Northern Advisory works with small and growing businesses and the individuals behind them, with a focus on real estate investment and adjacent sectors. If that sounds like you, get in touch.</p>
-      <a href="/cdn-cgi/l/email-protection#5d34332c28342f241d33322f2935382f333c392b342e322f24733e3c" class="btn btn-gold">Contact Us →</a>
+    <div class="eyebrow"><svg class="bearing" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" stroke-width="1"/><text x="14" y="15" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" font-weight="700" fill="currentColor">W</text></svg>Contact</div>
+    <h2>Let’s find your bearings.</h2>
+    <p class="lede">Northern Advisory works with small and growing businesses and the individuals behind them, with a focus on real estate investment and adjacent sectors. If that sounds like you, book a discovery call to talk through where you are and what you need.</p>
+    <div class="hero-actions">
+      <a href="{{ site.email_href }}" class="btn btn-gold">Book a discovery call</a>
     </div>
-
-    <div class="contact-card">
-      <div class="contact-line">
-        <span class="label">Email</span>
-        <a href="/cdn-cgi/l/email-protection#5d34332c28342f241d33322f2935382f333c392b342e322f24733e3c" class="value"><span class="__cf_email__" data-cfemail="5d34332c28342f241d33322f2935382f333c392b342e322f24733e3c">[email&#160;protected]</span></a>
-      </div>
-      <div class="contact-line">
-        <span class="label">Based in</span>
-        <span class="value">Toronto, Ontario</span>
-      </div>
-      <div class="contact-line">
-        <span class="label">Regulated by</span>
-        <span class="value" style="font-size:15px;">CPA Ontario</span>
-      </div>
-    </div>
+    <p class="contact-note">Based in Toronto, serving clients across Canada. Regulated by CPA Ontario.</p>
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
-<footer>
-  <div class="container">
-    <a href="#top" class="brand" style="display:flex;align-items:center;gap:8px;">
-      <svg width="18" height="18" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="215,55 255,215 215,375 175,215" fill="#B8C4D4"/>
-        <polygon points="40,215 215,175 390,215 215,255" fill="#B8C4D4"/>
-      </svg>
-      <span class="brand-word">Northern Advisory</span>
-    </a>
-    <nav class="footer-nav">
-      <a href="/about.html">About</a>
-      <a href="/reporting.html">Reporting</a>
-      <a href="/compliance.html">Compliance</a>
-      <a href="/advisory.html">Advisory</a>
-      <a href="/insights/">Insights</a>
-      <a href="/index.html#contact">Contact</a>
-    </nav>
-    <span>© <span id="year"></span> Northern Advisory.</span>
-  </div>
-</footer>
-
-<script>
-  // header background on scroll
-  const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 40);
-  });
-
-  // mobile menu toggle
-  const toggle = document.getElementById('menuToggle');
-  const nav = document.getElementById('primaryNav');
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    nav.classList.toggle('open');
-  });
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    toggle.classList.remove('open');
-    nav.classList.remove('open');
-  }));
-
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+{% include footer.html %}
 </body>
 </html>

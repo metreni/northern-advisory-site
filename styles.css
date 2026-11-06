@@ -9,6 +9,7 @@
     --offwhite:    #F5F0E8;
     --bluegrey:    #B8C4D4;
     --ink:         #0D1F3C;
+    --line:        #D3DBE5;  /* card borders on light backgrounds */
 
     --font-display: 'Playfair Display', Georgia, serif;
     --font-body:    'Inter', -apple-system, Segoe UI, sans-serif;
@@ -123,7 +124,7 @@
   /* ===================== HERO ===================== */
   .hero{
     position: relative;
-    min-height: 100vh;
+    min-height: min(100vh, 880px);
     background: radial-gradient(120% 100% at 50% -10%, #142a4d 0%, var(--navy) 45%, var(--navy-deep) 100%);
     color: var(--offwhite);
     display:flex;
@@ -211,7 +212,6 @@
   .service-card p{ font-size:14.5px; color: var(--bluegrey); }
   .service-card ul{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-top:6px; flex-grow:1; }
   .service-card li{ font-size:13.5px; color: var(--bluegrey); display:flex; gap:8px; }
-  .service-card li::before{ content:'—'; color: var(--gold); flex-shrink:0; }
 
   /* ----- Engagement / pricing (S) ----- */
   .engage-managed{
@@ -233,7 +233,6 @@
   .engage-card h3{ font-family: var(--font-display); font-size:24px; font-weight:600; margin-bottom:6px; }
   .engage-card ul{ list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:24px; flex-grow:1; }
   .engage-card li{ font-size:14px; display:flex; gap:10px; }
-  .engage-card li::before{ content:'—'; color: var(--gold); flex-shrink:0; }
   .engage-price{
     font-family: var(--font-display);
     font-size: 20px; font-weight: 600;
@@ -243,24 +242,7 @@
   }
   .engage-price small{ font-size:13px; font-weight:400; opacity:.65; font-family: var(--font-body); }
 
-  /* advisory card spans full width for emphasis */
-  .engage-advisory{
-    border: 1px solid var(--bluegrey);
-    padding: 36px 30px;
-    margin-top: 24px;
-    background: #fff8;
-    display:flex; flex-direction:column;
-  }
-  .engage-advisory h3{ font-family: var(--font-display); font-size:24px; font-weight:600; margin-bottom:6px; }
-  .engage-advisory .engage-badge{ margin-bottom:18px; }
-  .engage-advisory ul{
-    list-style:none; display:flex; flex-direction:column; gap:10px;
-    margin-bottom:24px; flex-grow:1;
-  }
-  .engage-advisory li{ font-size:14px; display:flex; gap:10px; }
-  .engage-advisory li::before{ content:'—'; color: var(--gold); flex-shrink:0; }
 
-  .engage-foot{ font-size:12px; opacity:.6; margin-top:36px; text-align:center; }
 
   @media (max-width: 700px){
     .engage-managed{ grid-template-columns: 1fr; }
@@ -270,13 +252,6 @@
   #contact .container{
     display:grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items:start;
   }
-  .contact-card{
-    border: 1px solid rgba(184,196,212,.4);
-    padding: 36px;
-  }
-  .contact-line{ display:flex; flex-direction:column; gap:4px; margin-bottom:24px; }
-  .contact-line .label{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color: var(--gold); }
-  .contact-line .value{ font-size:18px; font-family: var(--font-display); }
 
   /* ===================== FOOTER ===================== */
   footer{
@@ -361,7 +336,7 @@
   padding: 40px 36px;
   margin-top: 32px;
 }
-.service-block:first-of-type{ margin-top: 48px; }
+.service-block:first-of-type{ margin-top: 0; }
 .service-block .service-num{
   font-family: var(--font-body); font-size: 12px; font-weight: 700;
   letter-spacing: .14em; color: var(--gold-ink); text-transform: uppercase;
@@ -376,7 +351,6 @@
 .two-col{ display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
 .two-col ul{ list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .two-col li{ font-size: 14px; display: flex; gap: 10px; }
-.two-col li::before{ content: '—'; color: var(--gold); flex-shrink: 0; }
 .notes{ font-size: 13px; opacity: .7; margin-top: 10px; }
 
 .price-table{ width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 14.5px; }
@@ -416,7 +390,7 @@ header.scrolled nav.primary-nav a.active{ color: var(--gold-ink); }
 
 .subnav{ border-top: 1px solid rgba(184,196,212,.25); margin-top: 8px; padding-top: 8px; }
 header:has(.subnav){ padding-bottom: 10px; }
-.subnav .container{ display: flex; gap: 28px; }
+.subnav .container{ display: flex; gap: 28px; justify-content: flex-start; }
 .subnav a{
   font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
   color: var(--offwhite); opacity: .65; transition: opacity .2s ease, color .2s ease;
@@ -453,7 +427,7 @@ header.scrolled .subnav a.active{ color: var(--gold-ink); }
 }
 .founder-photo img{ position:relative; display:block; width:100%; border:1px solid var(--bluegrey); }
 .founder-photo figcaption{
-  margin-top:34px; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase;
+  margin:34px 0 0 -14px; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase;
   color:var(--navy); opacity:.75;
 }
 .founder-photo figcaption strong{
@@ -544,4 +518,60 @@ header.scrolled .subnav a.active{ color: var(--gold-ink); }
   .steps{ grid-template-columns: 1fr; }
   .article-wrap{ grid-template-columns: 1fr; gap: 48px; }
   .article-aside{ position: static; }
+}
+
+/* ===================== REVAMP: shared components ===================== */
+/* 1. List markers: small gold diamond (a compass point) */
+.service-card li::before,
+.two-col li::before{
+  content:""; width:6px; height:6px; flex-shrink:0; margin-top:.6em;
+  background: var(--gold); transform: rotate(45deg);
+}
+
+/* 4. One card style: white on light, translucent on navy; gold top rule on both */
+.engage-card, .service-block, .insight-card, .aside-card, .insight-empty{
+  background:#fff; border:1px solid var(--line); border-top:2px solid var(--gold);
+}
+.service-card{ border:1px solid rgba(184,196,212,.3); border-top:2px solid var(--gold); }
+.engage-card, .service-block{ padding: 36px 32px; }
+.service-card:hover, .insight-card:hover{ border-color: var(--gold); }
+
+/* 3. Header call-to-action */
+nav.primary-nav{ gap: 28px; }
+nav.primary-nav a.nav-plain{ padding-left: 28px; }
+nav.primary-nav a.nav-cta,
+header.scrolled nav.primary-nav a.nav-cta{
+  color: var(--navy-deep); opacity:1; padding: 10px 18px; font-size: 12px; letter-spacing:.08em;
+}
+
+/* 5. Pricing: one fee format, two-column Advisory, visible founding note */
+.fee-list li{
+  display:flex; align-items:baseline; gap:16px; font-size:14px;
+  padding-bottom: 9px; border-bottom: 1px dotted var(--line);
+}
+.fee-list li:last-child{ border-bottom:0; }
+.fee-list .fee{ margin-left:auto; white-space:nowrap; font-weight:600; color: var(--navy); }
+.fee-list .fee small{ font-size:12px; font-weight:400; opacity:.65; }
+.engage-advisory{
+  margin-top:24px; display:grid; grid-template-columns: 1fr 1.25fr; gap: 56px; align-items:start;
+}
+.engage-advisory-intro p{ font-size:14.5px; opacity:.85; margin: 6px 0 24px; }
+.engage-advisory .fee-list{ list-style:none; display:flex; flex-direction:column; gap:10px; margin:0; }
+.engage-note{
+  margin-top: 32px; padding: 16px 22px; font-size: 14.5px;
+  background: rgba(201,168,76,.1); border-left: 2px solid var(--gold);
+}
+
+/* Contact (W): single column with one call to action */
+#contact .container{ display:block; text-align:center; max-width: 780px; }
+#contact .eyebrow{ justify-content:center; }
+#contact .lede{ margin-left:auto; margin-right:auto; }
+#contact .hero-actions{ justify-content:center; }
+#contact .lede{ color: var(--bluegrey); margin-bottom: 32px; }
+.contact-note{ margin-top: 28px; font-size: 13px; letter-spacing: .04em; color: var(--bluegrey); }
+
+@media (max-width: 880px){
+  nav.primary-nav a.nav-plain{ padding-left:0; }
+  nav.primary-nav a.nav-cta{ color: var(--navy-deep) !important; font-size: 15px; }
+  .engage-advisory{ grid-template-columns: 1fr; gap: 28px; }
 }

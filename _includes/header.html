@@ -1,4 +1,4 @@
-<!-- ===================== HEADER (shared by Jekyll pages) ===================== -->
+<!-- ===================== HEADER (shared by every page) ===================== -->
 <header id="siteHeader">
   <div class="container">
     <a href="/" class="brand">
@@ -21,10 +21,20 @@
 
     <nav class="primary-nav" id="primaryNav">
       <a href="/about.html"{% if page.nav == "about" %} class="active"{% endif %}><span>N</span>About</a>
-      <a href="/index.html#services"><span>E</span>Services</a>
-      <a href="/index.html#engagement"><span>S</span>Engagement</a>
-      <a href="/index.html#contact"><span>W</span>Contact</a>
+      <a href="/#services"{% if page.nav == "services" %} class="active"{% endif %}><span>E</span>Services</a>
+      <a href="/#engagement"><span>S</span>Engagement</a>
+      <a href="/#contact"><span>W</span>Contact</a>
       <a href="/insights/" class="nav-plain{% if page.nav == "insights" %} active{% endif %}">Insights</a>
+      <a href="{{ site.email_href }}" class="btn btn-gold nav-cta">Book a call</a>
     </nav>
   </div>
+  {%- if page.subnav %}
+  <nav class="subnav" aria-label="Services">
+    <div class="container">
+      <a href="/reporting.html"{% if page.subnav == "reporting" %} class="active"{% endif %}>Reporting</a>
+      <a href="/compliance.html"{% if page.subnav == "compliance" %} class="active"{% endif %}>Compliance</a>
+      <a href="/advisory.html"{% if page.subnav == "advisory" %} class="active"{% endif %}>Advisory</a>
+    </div>
+  </nav>
+  {%- endif %}
 </header>

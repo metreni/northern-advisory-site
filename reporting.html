@@ -1,3 +1,7 @@
+---
+nav: services
+subnav: reporting
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,43 +46,7 @@
 </head>
 <body>
 
-<!-- ===================== HEADER ===================== -->
-<header id="siteHeader">
-  <div class="container">
-    <a href="index.html" class="brand">
-      <span class="brand-mark-wrap">
-        <svg class="brand-mark mark-light" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="215,55 255,215 215,375 175,215" fill="#F5F0E8"/>
-          <polygon points="40,215 215,175 390,215 215,255" fill="#F5F0E8"/>
-        </svg>
-        <svg class="brand-mark mark-color" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="215,55 255,215 215,375 175,215" fill="#C9A84C"/>
-          <polygon points="40,215 215,175 390,215 215,255" fill="#0D1F3C"/>
-        </svg>
-      </span>
-      <span class="brand-word">Northern Advisory</span>
-    </a>
-
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="primary-nav" id="primaryNav">
-      <a href="/about.html"><span>N</span>About</a>
-      <a href="index.html#services" class="active"><span>E</span>Services</a>
-      <a href="index.html#engagement"><span>S</span>Engagement</a>
-      <a href="index.html#contact"><span>W</span>Contact</a>
-      <a href="/insights/" class="nav-plain">Insights</a>
-    </nav>
-  </div>
-  <nav class="subnav" aria-label="Services">
-    <div class="container">
-      <a href="reporting.html" class="active">Reporting</a>
-      <a href="compliance.html">Compliance</a>
-      <a href="advisory.html">Advisory</a>
-    </div>
-  </nav>
-</header>
+{% include header.html %}
 
 <!-- ===================== PAGE HERO ===================== -->
 <section class="page-hero">
@@ -88,7 +56,7 @@
     <h1>Clean books. Clear statements.<br>Numbers you can run on.</h1>
     <p class="lede">Managed reporting for owner-operated businesses: bookkeeping on a fixed monthly fee, financial statements that close on time, and management reporting that shows what's actually happening in your business. All work is CPA-led and delivered up to the Northern Standard.</p>
     <div class="hero-actions">
-      <a href="index.html#contact" class="btn btn-gold">Book a discovery call</a>
+      <a href="{{ site.email_href }}" class="btn btn-gold">Book a discovery call</a>
       <a href="#bookkeeping" class="btn btn-outline">See services below</a>
     </div>
   </div>
@@ -264,52 +232,12 @@
       <p>Book a discovery call and we'll map the right combination of services to your business, with a clear engagement letter and fixed fees before any work begins.</p>
     </div>
     <div class="hero-actions">
-      <a href="index.html#contact" class="btn btn-gold">Book a discovery call</a>
-      <a href="/cdn-cgi/l/email-protection#5d34332c28342f241d33322f2935382f333c392b342e322f24733e3c" class="btn btn-outline">Contact Us</a>
+      <a href="{{ site.email_href }}" class="btn btn-gold">Book a discovery call</a>
+      <a href="/#engagement" class="btn btn-outline">Compare engagements</a>
     </div>
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
-<footer>
-  <div class="container">
-    <a href="index.html" class="brand" style="display:flex;align-items:center;gap:8px;">
-      <svg width="18" height="18" viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="215,55 255,215 215,375 175,215" fill="#B8C4D4"/>
-        <polygon points="40,215 215,175 390,215 215,255" fill="#B8C4D4"/>
-      </svg>
-      <span class="brand-word">Northern Advisory</span>
-    </a>
-    <nav class="footer-nav">
-      <a href="/about.html">About</a>
-      <a href="/reporting.html">Reporting</a>
-      <a href="/compliance.html">Compliance</a>
-      <a href="/advisory.html">Advisory</a>
-      <a href="/insights/">Insights</a>
-      <a href="/index.html#contact">Contact</a>
-    </nav>
-    <span>© <span id="year"></span> Northern Advisory.</span>
-  </div>
-</footer>
-
-<script>
-  const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 40);
-  });
-  const toggle = document.getElementById('menuToggle');
-  const nav = document.getElementById('primaryNav');
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    nav.classList.toggle('open');
-  });
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    toggle.classList.remove('open');
-    nav.classList.remove('open');
-  }));
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+{% include footer.html %}
 </body>
 </html>
