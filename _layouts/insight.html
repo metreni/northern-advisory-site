@@ -30,6 +30,9 @@ nav: insights
       <div class="prose">
         {{ content }}
       </div>
+      {%- if page.linkedin %}
+      <p class="origin-note">This article was first shared on <a href="{{ page.linkedin }}" rel="noopener" target="_blank">Northern Advisory’s LinkedIn page</a>.</p>
+      {%- endif %}
       <p class="disclaimer">This article is general information only, current as of its publication date, and is not tax, accounting, legal, or investment advice. Tax rules and their application depend on your specific facts. Speak with a qualified professional before acting on anything discussed here.</p>
     </article>
 
@@ -40,7 +43,7 @@ nav: insights
         <div class="who">{{ page.author }}</div>
         <div class="role">{{ page.author_role }}</div>
         <p>Questions about how this applies to you? Book a discovery call to talk it through.</p>
-        <a href="{{ site.email_href }}" class="btn btn-gold">Book a discovery call</a>
+        <a href="/#contact" class="btn btn-gold">Book a discovery call</a>
       </div>
     </aside>
   </div>

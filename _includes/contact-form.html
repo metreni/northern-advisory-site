@@ -1,0 +1,75 @@
+<!-- Contact form. Submissions are relayed by Web3Forms to the inbox tied to site.web3forms_key
+     (set in _config.yml). The destination address is never in the page. -->
+<form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+  <input type="hidden" name="access_key" value="{{ site.web3forms_key }}">
+  <input type="hidden" name="subject" value="New enquiry from northernadvisory.ca">
+  <input type="hidden" name="from_name" value="Northern Advisory website">
+  <input type="hidden" name="redirect" value="{{ '/thanks.html' | absolute_url }}">
+  <!-- spam trap: real visitors never see or tick this -->
+  <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+  <div class="field-row">
+    <label class="field"><span>Name</span>
+      <input type="text" name="name" autocomplete="name" required maxlength="120">
+    </label>
+    <label class="field"><span>Email</span>
+      <input type="email" name="email" autocomplete="email" required maxlength="160">
+    </label>
+  </div>
+  <div class="field-row">
+    <label class="field"><span>Phone <em>(optional)</em></span>
+      <input type="tel" name="phone" autocomplete="tel" maxlength="40">
+    </label>
+    <label class="field"><span>Interested in</span>
+      <select name="interest">
+        <option>Not sure yet</option>
+        <option>Reporting</option>
+        <option>Compliance</option>
+        <option>Advisory</option>
+        <option>A combination</option>
+      </select>
+    </label>
+  </div>
+  <label class="field"><span>How can we help?</span>
+    <textarea name="message" rows="5" required maxlength="4000" placeholder="A few lines about your business and what you need."></textarea>
+  </label>
+
+  <div class="form-foot">
+    <button type="submit" class="btn btn-gold">Request a discovery call</button>
+    <p class="form-note">We reply within one business day. Please don't include sensitive financial or tax details here.</p>
+  </div>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+(() => {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  const status = form.querySelector('.form-status');
+  const btn = form.querySelector('button[type="submit"]');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (!form.access_key.value) {
+      status.textContent = 'The form is not connected yet (preview only).';
+      status.className = 'form-status err'; return;
+    }
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message);
+      form.reset();
+      status.textContent = 'Thank you. Your message has been sent, and we will be in touch within one business day.';
+      status.className = 'form-status ok';
+    } catch (err) {
+      status.textContent = 'Sorry, something went wrong sending your message. Please try again in a moment.';
+      status.className = 'form-status err';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Request a discovery call';
+    }
+  });
+})();
+</script>

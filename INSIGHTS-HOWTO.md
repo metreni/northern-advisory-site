@@ -24,4 +24,10 @@ styled article pages automatically when you push. No HTML needed.
 - Each article automatically gets: reading time, author box, legal disclaimer,
   "More insights" links, sitemap entry, and an RSS feed entry (`/insights/feed.xml`).
 - To change the disclaimer or author box, edit `_layouts/insight.html`.
+- `linkedin:` (optional) adds a "first shared on LinkedIn" link under the article.
+- `share_image:` (optional) sets the preview picture used when the article is shared.
+- Financial statement tables: copy a `<figure class="statement">` block from
+  `_posts/2026-09-21-indirect-cash-flow-statement.md`. Row classes: `head` (bold label),
+  `sub` (italic sub-heading), `hl` (gold highlight), `subtotal`, `total` (double underline);
+  label indent levels `l1` to `l4`. Tables built this way stay sharp and fit on phones.
 - Avoid em dashes (—) in copy. Typing `--` or `---` in Markdown also turns into dashes.

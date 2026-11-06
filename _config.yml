@@ -8,9 +8,9 @@ url: "https://northernadvisory.ca"
 baseurl: ""
 lang: en_CA
 
-# Contact address (information@northernadvisory.ca), Cloudflare-encoded. Never write it in plaintext.
-# To change it: key byte 5d, then each character XOR 0x5d, as hex.
-email_href: "/cdn-cgi/l/email-protection#5d34333b322f303c293432331d33322f2935382f333c392b342e322f24733e3c"
+# Contact form: Web3Forms access key (create at web3forms.com using information@northernadvisory.ca).
+# The key only routes messages to that inbox; the address itself never appears on the site.
+web3forms_key: ""
 timezone: America/Toronto
 
 # Insight articles live in _posts/ as Markdown: YYYY-MM-DD-short-title.md
