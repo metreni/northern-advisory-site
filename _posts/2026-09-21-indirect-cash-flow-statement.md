@@ -73,7 +73,7 @@ Same statement, same operating cash flow, vastly improved usefulness. By breakin
   </table>
 </figure>
 
-Each highlighted line answers one of the four questions above, directly from the statement, without a separate schedule.
+Each highlighted line answers one of those four questions directly from the statement.
 
 ## Why it matters
 
